@@ -16,11 +16,10 @@ const router = createBrowserRouter([
     element: <Layout></Layout>,
     children:[
       {
-        path: "/",
+        path:"/",
         element: <Home></Home>,
       }
     ]
-
   },
 ]);
 createRoot(document.getElementById('root')).render(
