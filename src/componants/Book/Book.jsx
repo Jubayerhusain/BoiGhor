@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+
 function Book({ book }) {
   const { bookId, image, tags, bookName, author } = book;
   return (
-    <div className="card bg-base-100 w-96 shadow-xl mx-auto py-5">
+    <Link to={`/book/${bookId}`}>
+        <div className="card bg-base-100 w-96 shadow-xl mx-auto py-5">
       <figure className="bg-green-100 py-8 rounded-2xl">
         <img className="w-[134px] h-[166px]" src={image} alt={bookName} />
       </figure>
@@ -53,6 +56,7 @@ function Book({ book }) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }
 
