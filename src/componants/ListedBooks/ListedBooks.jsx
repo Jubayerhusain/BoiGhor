@@ -33,7 +33,7 @@ function ListedBooks() {
                     <TabPanel>
                         <h2>Read Books: {readList.length}</h2>
                         {readList.length > 0 ? (
-                            <ul>
+                            <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
                                 {readList.map(book => (
                                     <Book book={book}></Book>
                                 ))}
