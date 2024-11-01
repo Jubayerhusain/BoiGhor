@@ -14,12 +14,12 @@ function ListedBooks() {
         const storedReadListInt = storedReadList.map(id => parseInt(id));
         const readBookList = allBooks.filter(book => storedReadListInt.includes(book.bookId));
         setReadList(readBookList);
-    }, [allBooks]); // Dependency added
+    }, [allBooks]);
 
     const handleDelete = (id) => {
         const updateBookList = readList.filter(book => book.bookId !== id);
         setReadList(updateBookList);
-        removeBookFromList(id); // Remove from local storage
+        removeBookFromList(id);
     };
 
     return (
