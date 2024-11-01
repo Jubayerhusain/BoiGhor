@@ -5,6 +5,8 @@ import Layout from './componants/Layout/Layout';
 import Erorr from './componants/ErrorHundle/Error';
 import Home from './componants/Home/Home';
 import BookDetail from './componants/BookDetails/BookDetail';
+import ListedBooks from './componants/ListedBooks/ListedBooks';
+import PageToRead from './componants/PageToRead/PageToRead';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
       {
         path:"/",
         element: <Home></Home>,
+      },
+      {
+        path:"/listedBooks",
+        element: <ListedBooks></ListedBooks>,
+      },
+      {
+        path:"/pagesToRead",
+        element: <PageToRead></PageToRead>,
       },
       {
         path:"/book/:bookId",

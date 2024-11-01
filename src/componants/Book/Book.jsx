@@ -20,7 +20,7 @@ function Book({ book }) {
         </h2>
         <p>{author}</p>
         <div className="border-b-2 my-5 border-dashed"></div>
-        <div className="card-actions justify-between">
+        <div className="card-actions justify-between items-center">
           <div className="btn btn-primary bg-[#59C6D2] text-white font-semibold border-none hover:bg-[#23BE0A]">Details</div>
           <div>
             <div className="rating gap-1">
