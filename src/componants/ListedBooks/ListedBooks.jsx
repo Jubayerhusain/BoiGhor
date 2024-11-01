@@ -2,8 +2,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useLoaderData } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { getStoredReadList } from "../../utility/localStore";
-import Book from './../Book/Book';
+import { getStoredReadList, removeBookFromList } from "../../utility/localStore";
+import ReadBook from './../ReadBook/ReadBook';
 
 function ListedBooks() {
     const [readList, setReadList] = useState([]);
@@ -12,14 +12,16 @@ function ListedBooks() {
     useEffect(() => {
         const storedReadList = getStoredReadList();
         const storedReadListInt = storedReadList.map(id => parseInt(id));
-
-        // console.log(storedReadList, storedReadListInt, allBooks);
-
         const readBookList = allBooks.filter(book => storedReadListInt.includes(book.bookId));
-
         setReadList(readBookList);
+    }, [allBooks]); // Dependency added
 
-    }, []);
+    const handleDelete = (id) => {
+        const updateBookList = readList.filter(book => book.bookId !== id);
+        setReadList(updateBookList);
+        removeBookFromList(id); // Remove from local storage
+    };
+
     return (
         <div>
             <h1 className="font-bold text-gray-700 text-5xl text-center my-28 border-b-2 border-dashed py-3 w-11/12 mx-auto">Listed Books</h1>
@@ -31,11 +33,11 @@ function ListedBooks() {
                     </TabList>
 
                     <TabPanel>
-                        <h2>Read Books: {readList.length}</h2>
+                        <h2 className="font-bold text-gray-700 text-4xl my-14">Read Books: {readList.length}</h2>
                         {readList.length > 0 ? (
-                            <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
+                            <ul className="space-y-5 mt-10">
                                 {readList.map(book => (
-                                    <Book book={book}></Book>
+                                    <ReadBook key={book.bookId} book={book} onDelete={() => handleDelete(book.bookId)} />
                                 ))}
                             </ul>
                         ) : (
