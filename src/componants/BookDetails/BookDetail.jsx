@@ -1,4 +1,5 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredReadList } from "../../utility/localStore";
 
 function BookDetail() {
   const { bookId } = useParams();
@@ -21,6 +22,10 @@ function BookDetail() {
     publisher,
     yearOfPublishing,
   } = bookDetail;
+
+  const hundleMarkReadList = (id)=>{
+    addToStoredReadList(id)
+  }
   return (
     <div className=" bg-gray-100 text-gray-700 w-11/12 mx-auto my-24 rounded-3xl">
       <div className="xl:flex lg:flex md:flex-rows flex-rows justify-around items-center">
@@ -72,7 +77,7 @@ function BookDetail() {
             <p className="text-md font-semibold">{rating}</p>
           </div>
           <div className="space-x-4 my-5">
-            <button className="btn btn-primary border-[#23BE0A] text-gray-900 hover:border-none bg-white hover:bg-cyan-300">
+            <button onClick={()=>{hundleMarkReadList(bookId)}} className="btn btn-primary border-[#23BE0A] text-gray-900 hover:border-none bg-white hover:bg-cyan-300">
               Read
             </button>
             <button className="btn text-white btn-primary bg-[#23BE0A] border-none hover:bg-cyan-400">Wishlist</button>
